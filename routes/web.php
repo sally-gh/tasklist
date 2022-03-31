@@ -16,3 +16,48 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/about', function () {
+  //  $name='ahmed';
+  //  $age=25;
+  //  return view('about',[
+  //      'name'=> $name,
+  //      'age'=> $age
+  //      ]);
+
+     // return view('about',compact('name','age'));
+
+     // return view('about')->with('name',$name)->with('age',$age);
+// });
+
+
+Route :: get('/about', function(){
+      $name = request('name');
+      return view('about', compact('name'));
+});
+
+Route ::post('/store', function(){
+     $name = request('name');
+     return view('about', compact('name'));
+});
+
+
+Route:: get('tasks',function () {
+    $tasks = [
+        'first-task' => 'Task 1',
+        'second-task' => 'Task 2',
+        'third-task' => 'Task 3'
+    ];
+    return view ('tasks', compact('tasks'));
+});
+
+
+Route :: get('show/{id}', function($id){
+  $tasks = [
+     'first-task' => 'Task 1',
+     'second-task' => 'Task 2',
+     'third-task' => 'Task 3'
+  ];
+  $task = $tasks[$id];
+  return view ('show', compact('task'));
+});
